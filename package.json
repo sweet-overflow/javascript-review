@@ -1,0 +1,17 @@
+{
+  "name": "javascript-review",
+  "version": "1.0.0",
+  "description": "Sample JavaScript project for main features review",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "uuid": "^11.1.0"
+  },
+  "private": true,
+  "author": "Web Application Development Team",
+  "license": "MIT"
+}
