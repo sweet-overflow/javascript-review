@@ -5,6 +5,7 @@ import {generateUuid} from "../../../shared/domain/model/uuid.js";
 import {DateTime} from "../../../shared/domain/model/date-time.js";
 import {PurchaseOrderState} from "./purchase-order-state.js";
 import {Money} from "../../../shared/domain/model/money.js";
+import {PurchaseOrderItem} from "./purchase-order-item.js";
 
 /**
  * Represents a purchase order aggregate root in the procurement bounded context.
@@ -50,12 +51,12 @@ export class PurchaseOrder {
             throw new ValidationError(`Cannot add more than ${this.#MAX_ITEMS} items to a purchase order`);
         if(!Number.isFinite(unitPriceAmount) || unitPriceAmount < 0)
             throw new ValidationError('Unit price amount must be a non-negative number');
-        this._items.push({
+        this._items.push( new PurchaseOrderItem({
             orderId: this._id,
             productId,
             quantity,
             unitPrice: new Money({amount: unitPriceAmount, currency: this._currency}),
-        });
+        }));
     }
 
     /**
@@ -65,9 +66,7 @@ export class PurchaseOrder {
     calculateTotalPrice() {
         if(this._items.length === 0)
             throw new ValidationError('No items in the purchase order to calculate total price');
-        return this._items.reduce((total, item) => {
-            return total.add(item.calculateSubtotal());
-        }, new Money({amount: 0, currency: this._currency}));
+        return this._items.reduce((total, item) => total.add(item.calculateSubtotal()), new Money({amount: 0, currency: this._currency}));
     }
 
     /**
