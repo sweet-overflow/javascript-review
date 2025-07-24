@@ -1,7 +1,7 @@
 # javascript-review
 
 ## Summary
-Sample JavaScript project illustrating the use the following concepts:
+Sample JavaScript project illustrating the use of the following concepts:
 - Variables
 - Classes
 - Functions
@@ -14,6 +14,12 @@ Sample JavaScript project illustrating the use the following concepts:
 
 ## Dependencies
 - uuid (https://www.npmjs.com/package/uuid)
+
+## Installation
+Before running the project, install the dependencies:
+```bash
+npm install
+```
 
 ## Execution
 To run the project, execute the following command:
